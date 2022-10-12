@@ -16,5 +16,5 @@ kind: Mapping
 metadata:
   name: datagrid-backend
 spec:
-  prefix: /hazelcast/
+  prefix: /datagrid/
   service: datagrid-service-ingress
