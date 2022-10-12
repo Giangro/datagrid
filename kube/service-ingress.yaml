@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: datagrid-service-ingress
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app: datagrid
+---
+apiVersion: getambassador.io/v2
+kind: Mapping
+metadata:
+  name: datagrid-backend
+spec:
+  prefix: /hazelcast/
+  service: datagrid-service-ingress

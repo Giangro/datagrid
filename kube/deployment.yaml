@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datagrid-deployment
+  labels: 
+    app:
+      datagrid
+  namespace: develop
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: datagrid
+  template:
+    metadata:
+      labels:
+        app: datagrid
+    spec:
+      containers:
+      - name: datagrid
+        image: localhost:5000/datagrid:latest
+        imagePullPolicy: Always        
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: hazelcast-config-volume
+          mountPath: /workspace/hazelcast.yaml
+          subPath: hazelcast.yaml
+      volumes:
+        - name: hazelcast-config-volume
+          configMap:
+            name: datagrid-hz-config
+      restartPolicy: Always
