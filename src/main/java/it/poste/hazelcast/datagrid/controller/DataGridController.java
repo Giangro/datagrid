@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DataGridController {
     
-    @GetMapping("/get")
+    @GetMapping("/echo")
     public String get(@RequestParam(value = "message") String message) {       
         return message;
     }
