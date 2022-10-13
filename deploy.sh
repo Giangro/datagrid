@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
-mvn spring-boot:build-image
+/usr/bin/mvn spring-boot:build-image -DskipTests
 docker tag datagrid:latest localhost:5000/datagrid:latest
 docker push localhost:5000/datagrid:latest
-kubectl delete deployments datagrid-deployment
-kubectl apply -f kube/deployment.yaml
+kubectl delete deployments datagrid-deployment -n develop
+kubectl apply -f kube/deployment.yaml -n develop
