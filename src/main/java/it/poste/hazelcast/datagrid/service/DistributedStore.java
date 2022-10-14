@@ -6,6 +6,7 @@ package it.poste.hazelcast.datagrid.service;
 
 import com.hazelcast.core.HazelcastInstance;
 import it.poste.hazelcast.datagrid.config.Config;
+import it.poste.hazelcast.datagrid.model.Storable;
 import java.util.concurrent.ConcurrentMap;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +27,16 @@ public class DistributedStore {
         return this.hazelcastInstance.getMap(Config.MAP);
     }
     
-    public String get(String key) {
-        return map().get(key);
+    public Storable get(String key) {
+        return Storable
+                .builder()
+                .key(key)
+                .value(map().get(key))
+                .build();
     }
     
-    public String put(String key,String value) {
-        return map().put(key,value);
+    public void put(Storable st) {
+        map().put(st.getKey(),st.getValue());
     }
     
 }
