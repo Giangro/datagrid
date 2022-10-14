@@ -14,4 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Slf4j
 public class Config {    
+    
+    public static final String MAP = "map";
+        
 }
