@@ -11,14 +11,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.integration.config.EnableIntegration;
 import org.springframework.integration.hazelcast.leader.LeaderInitiator;
 import org.springframework.integration.leader.Candidate;
+import org.springframework.integration.leader.event.DefaultLeaderEventPublisher;
+import org.springframework.integration.leader.event.LeaderEventPublisher;
 
 /**
  *
  * @author alex
  */
 @Configuration
+@EnableIntegration
 @Slf4j
 public class Config {
 
@@ -51,6 +55,11 @@ public class Config {
     }
 
     @Bean
+    public LeaderEventPublisher leaderEventPublisher() {
+        return new DefaultLeaderEventPublisher();
+    }
+    
+    @Bean
     public Candidate nodeCandidate() {
         final NodeCandidate candidate
                 = new NodeCandidate(nodeId, role);
@@ -58,9 +67,12 @@ public class Config {
     }
 
     @Bean
-    public LeaderInitiator initiator(HazelcastInstance hazelcastInstance) {
+    public LeaderInitiator initiator(HazelcastInstance hazelcastInstance, 
+            Candidate nodeCandidate,
+            LeaderEventPublisher leaderEventPublisher) {
         final LeaderInitiator leaderInitiator
-                = new LeaderInitiator(hazelcastInstance, nodeCandidate());
+                = new LeaderInitiator(hazelcastInstance, nodeCandidate);        
+        leaderInitiator.setLeaderEventPublisher(leaderEventPublisher);
         return leaderInitiator;
     }
 

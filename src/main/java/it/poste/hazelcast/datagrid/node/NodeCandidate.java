@@ -15,6 +15,7 @@ import org.springframework.integration.leader.DefaultCandidate;
 @Slf4j
 public class NodeCandidate extends DefaultCandidate {        
     
+    
     public NodeCandidate(String nodeId, String role) {
         super(nodeId, role);    
     }
