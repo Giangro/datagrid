@@ -1,3 +1,7 @@
+app:
+    nodeId: datagrid-node-${random.uuid}
+    role: schedulerJobRole
+    mapName: datagridMap
 spring:
     profiles:
         active: local

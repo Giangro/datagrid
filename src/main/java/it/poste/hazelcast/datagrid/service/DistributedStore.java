@@ -17,14 +17,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class DistributedStore {
     
-    HazelcastInstance hazelcastInstance;
+    private final HazelcastInstance hazelcastInstance;
+    private final String mapName;
     
-    public DistributedStore(HazelcastInstance hi) {
-        this.hazelcastInstance = hi;               
+    public DistributedStore(HazelcastInstance hi,String mapName) {
+        this.hazelcastInstance = hi;
+        this.mapName = mapName;        
     }
     
     private ConcurrentMap<String,String> map() {
-        return this.hazelcastInstance.getMap(Config.MAP);
+        return this.hazelcastInstance.getMap(mapName);
     }
     
     public Storable get(String key) {
