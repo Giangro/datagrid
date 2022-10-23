@@ -1,3 +1,5 @@
 spring:
     hazelcast:
         config: classpath:hazelcast-kube.yaml
+        
+logging.level.it.poste: DEBUG

@@ -4,6 +4,7 @@
  */
 package it.poste.hazelcast.datagrid.node;
 
+import it.poste.hazelcast.datagrid.service.ScheduledJob;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.integration.leader.Context;
 import org.springframework.integration.leader.DefaultCandidate;
@@ -15,21 +16,25 @@ import org.springframework.integration.leader.DefaultCandidate;
 @Slf4j
 public class NodeCandidate extends DefaultCandidate {        
     
+    private final ScheduledJob scheduledJob;
     
-    public NodeCandidate(String nodeId, String role) {
-        super(nodeId, role);    
+    public NodeCandidate(ScheduledJob scheduledJob, String nodeId, String role) {
+        super(nodeId, role);
+        this.scheduledJob = scheduledJob;
     }
     
     @Override
     public void onGranted(Context ctx) {
         super.onGranted(ctx);
         log.info("Leader granted to: {}",ctx.toString());
+        scheduledJob.start();
     }
 
     @Override
     public void onRevoked(Context ctx) {
         super.onRevoked(ctx);
         log.info("Leader revoked to: {}",ctx.toString());        
+        scheduledJob.stop();
     }      
     
 }

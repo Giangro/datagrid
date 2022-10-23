@@ -2,6 +2,7 @@ app:
     nodeId: datagrid-node-${random.uuid}
     role: schedulerJobRole
     mapName: datagridMap
+    cronJobExpr: 0/10 * * * * *
 spring:
     profiles:
         active: local

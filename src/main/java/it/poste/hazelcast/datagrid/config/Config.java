@@ -16,6 +16,7 @@ import org.springframework.integration.hazelcast.leader.LeaderInitiator;
 import org.springframework.integration.leader.Candidate;
 import org.springframework.integration.leader.event.DefaultLeaderEventPublisher;
 import org.springframework.integration.leader.event.LeaderEventPublisher;
+import it.poste.hazelcast.datagrid.service.ScheduledJob;
 
 /**
  *
@@ -29,14 +30,17 @@ public class Config {
     private final String nodeId;
     private final String role;
     private final String distributedMapName;
+    private final String cronJobExpr;
 
     public Config(@Value("${app.nodeId}") String nodeid,
             @Value("${app.role}") String role,
-            @Value("${app.mapName}") String map
+            @Value("${app.mapName}") String map,
+            @Value("${app.cronJobExpr}") String cronjobexpr
     ) {
         this.nodeId = nodeid;
         this.role = role;
         this.distributedMapName = map;
+        this.cronJobExpr = cronjobexpr;
     }
 
     @Bean
@@ -55,14 +59,19 @@ public class Config {
     }
 
     @Bean
+    public String cronJobExpr() {
+        return cronJobExpr;
+    }
+    
+    @Bean
     public LeaderEventPublisher leaderEventPublisher() {
         return new DefaultLeaderEventPublisher();
     }
     
     @Bean
-    public Candidate nodeCandidate() {
+    public Candidate nodeCandidate(ScheduledJob scheduledJob, String nodeId, String role) {
         final NodeCandidate candidate
-                = new NodeCandidate(nodeId, role);
+                = new NodeCandidate(scheduledJob, nodeId, role);
         return candidate;
     }
 
