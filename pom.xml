@@ -78,6 +78,12 @@
                     </environmentVariables>
                     <image>
                         <name>${project.artifactId}:latest</name>
+                        <!--
+                        <env>
+                            <HTTP_PROXY>http://localhost:3128</HTTP_PROXY>
+                            <HTTPS_PROXY>http://localhost:3128</HTTPS_PROXY>
+                        </env>
+                        -->
                     </image>                                  
                     <excludes>
                         <exclude>
