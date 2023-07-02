@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.4</version>
+        <version>3.1.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>it.poste.hazelcast</groupId>
@@ -14,22 +14,20 @@
     <name>datagrid</name>
     <description>Hazelcast Integration</description>
     <properties>
-        <java.version>11</java.version>
-        <hazelcast.version>4.2.5</hazelcast.version>
-        <spring-integration-hazelcast.version>3.0.0</spring-integration-hazelcast.version>
+        <java.version>17</java.version>
+        <hazelcast.version>5.0-BETA-1</hazelcast.version>
+        <spring-integration-hazelcast.version>6.1.1</spring-integration-hazelcast.version>
         <spring-data-hazelcast.version>2.4.0</spring-data-hazelcast.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <!--
-        <dependency>
+        </dependency>        
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        -->
+        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

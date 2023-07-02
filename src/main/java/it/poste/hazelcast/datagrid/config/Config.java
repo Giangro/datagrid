@@ -6,7 +6,6 @@ package it.poste.hazelcast.datagrid.config;
 
 import com.hazelcast.core.HazelcastInstance;
 import it.poste.hazelcast.datagrid.node.NodeCandidate;
-import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +16,8 @@ import org.springframework.integration.leader.Candidate;
 import org.springframework.integration.leader.event.DefaultLeaderEventPublisher;
 import org.springframework.integration.leader.event.LeaderEventPublisher;
 import it.poste.hazelcast.datagrid.service.ScheduledJob;
+import jakarta.annotation.PostConstruct;
+//import javax.annotation.PostConstruct;
 
 /**
  *
