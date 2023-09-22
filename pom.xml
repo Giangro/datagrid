@@ -5,17 +5,17 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.11</version>
+        <version>3.1.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>it.poste.hazelcast</groupId>
     <artifactId>datagrid</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.7c-SNAPSHOT</version>
     <name>datagrid</name>
     <description>Hazelcast Integration</description>
     <properties>
         <java.version>17</java.version>
-        <hazelcast.version>4.2.8</hazelcast.version>
+        <hazelcast.version>5.3.2</hazelcast.version>
         <spring-integration-hazelcast.version>6.1.3</spring-integration-hazelcast.version>
         <spring-data-hazelcast.version>2.4.0</spring-data-hazelcast.version>
     </properties>
@@ -50,7 +50,7 @@
         </dependency>
         <dependency>
             <groupId>com.hazelcast</groupId>
-            <artifactId>hazelcast-all</artifactId>
+            <artifactId>hazelcast</artifactId>
             <version>${hazelcast.version}</version>
         </dependency>
         <!-- end::hazelcast-dep[] -->
