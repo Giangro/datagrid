@@ -10,7 +10,7 @@
     </parent>
     <groupId>it.poste.hazelcast</groupId>
     <artifactId>datagrid</artifactId>
-    <version>1.0.7c-SNAPSHOT</version>
+    <version>1.1.0</version>
     <name>datagrid</name>
     <description>Hazelcast Integration</description>
     <properties>
